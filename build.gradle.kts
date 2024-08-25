@@ -4,4 +4,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.kapt) apply false
+    alias(libs.plugins.org.jetbrains.kotlin.jvm) apply false
+    alias(libs.plugins.androidLibrary) apply false
 }
