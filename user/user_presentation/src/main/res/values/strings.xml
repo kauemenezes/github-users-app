@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Users screen -->
+    <string name="users_screen_title">Usuários do Github</string>
+    <string name="users_screen_image_description">Imagem do usuário</string>
+    <string name="users_screen_input_search_hint">Buscar usuário</string>
+    <string name="users_screen_no_result_text">Não existem resultados para sua busca</string>
+
+    <!-- User details screen -->
+    <string name="users_details_screen_title">Detalhes do Usuário</string>
+
+    <!-- Request errors -->
+    <string name="error_something_went_wrong">Não foi possível realizar a operação no momento</string>
+    <string name="error_no_connection">Sem conexão com a internet</string>
+    <string name="error_retry">Tentar novamente</string>
+
+</resources>
