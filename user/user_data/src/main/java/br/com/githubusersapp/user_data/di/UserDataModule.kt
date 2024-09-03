@@ -1,7 +1,9 @@
 package br.com.githubusersapp.user_data.di
 
+import br.com.githubusersapp.user_data.BuildConfig
 import br.com.githubusersapp.user_data.api.UserService
 import br.com.githubusersapp.user_data.datasource.UserDataSource
+import br.com.githubusersapp.user_data.datasource.UserDataSourceImpl
 import br.com.githubusersapp.user_data.repository.UserRepositoryImpl
 import br.com.githubusersapp.user_domain.repository.UserRepository
 import dagger.Module
@@ -10,6 +12,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -24,13 +27,20 @@ object UserDataModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder()
+        val client = OkHttpClient.Builder()
             .addInterceptor(
-                HttpLoggingInterceptor().apply {
-                    level = HttpLoggingInterceptor.Level.BODY
+                Interceptor { chain ->
+                    val builder = chain.request().newBuilder()
+                    builder.header("Authorization", "Bearer ${BuildConfig.API_KEY}")
+                    return@Interceptor chain.proceed(builder.build())
                 }
             )
-            .build()
+        if (BuildConfig.DEBUG) {
+            val logging = HttpLoggingInterceptor()
+            logging.level = HttpLoggingInterceptor.Level.BODY
+            client.addInterceptor(logging)
+        }
+        return client.build()
     }
 
     @Provides
@@ -53,6 +63,16 @@ object UserDataModule {
         return UserRepositoryImpl(
             userDataSource = userDataSource,
             dispatcher = dispatcher
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserDataSource(
+        userService: UserService
+    ): UserDataSource {
+        return UserDataSourceImpl(
+            userService = userService
         )
     }
 
