@@ -37,7 +37,7 @@ import br.com.githubusersapp.user_presentation.users.components.UserListItem
 @Composable
 fun UsersScreen(
     onNavigateToUserDetails: (String) -> Unit,
-    viewModel: UsersViewModel = hiltViewModel()
+    viewModel: UsersViewModel = hiltViewModel(),
 ) {
     val searchText by viewModel.searchText.collectAsStateWithLifecycle()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -54,37 +54,40 @@ fun UsersScreen(
     searchText: String,
     uiState: UsersUiState,
     onSearchQueryChange: (String) -> Unit,
-    onItemClick: (String) -> Unit
+    onItemClick: (String) -> Unit,
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(R.string.users_screen_title)
+                        text = stringResource(R.string.users_screen_title),
                     )
-                }
+                },
             )
         },
         content = { paddingValues ->
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues)
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues),
             ) {
                 TextField(
                     value = searchText,
                     onValueChange = onSearchQueryChange,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp),
                     leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
                     placeholder = { Text(text = "Search") },
-                    colors = TextFieldDefaults.colors(
-                        focusedContainerColor = MaterialTheme.colorScheme.background,
-                        unfocusedContainerColor = MaterialTheme.colorScheme.background,
-                        disabledContainerColor = MaterialTheme.colorScheme.background
-                    )
+                    colors =
+                        TextFieldDefaults.colors(
+                            focusedContainerColor = MaterialTheme.colorScheme.background,
+                            unfocusedContainerColor = MaterialTheme.colorScheme.background,
+                            disabledContainerColor = MaterialTheme.colorScheme.background,
+                        ),
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 when {
@@ -102,16 +105,17 @@ fun UsersScreen(
 
                     else -> {
                         LazyColumn(
-                            modifier = Modifier
-                                .fillMaxSize(),
+                            modifier =
+                                Modifier
+                                    .fillMaxSize(),
                             contentPadding = PaddingValues(16.dp),
-                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                            verticalArrangement = Arrangement.spacedBy(8.dp),
                         ) {
                             items(
                                 items = uiState.users,
                                 key = { user ->
                                     user.id
-                                }
+                                },
                             ) { user ->
                                 UserListItem(user = user, onItemClick = onItemClick)
                             }
@@ -119,6 +123,6 @@ fun UsersScreen(
                     }
                 }
             }
-        }
+        },
     )
 }

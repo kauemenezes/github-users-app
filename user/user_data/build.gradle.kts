@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.kapt)
 }
 
+apply(from = "$rootDir/ktlint.gradle")
+
 android {
     namespace = "br.com.githubusersapp.user_data"
     compileSdk = Integer.parseInt(libs.versions.compileSdk.get())
@@ -28,7 +30,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }

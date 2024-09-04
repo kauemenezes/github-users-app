@@ -52,7 +52,7 @@ const val USER_DETAILS_ARGUMENT_KEY = "userLogin"
 @Composable
 fun UserDetailsScreen(
     onBackButtonClick: () -> Unit,
-    viewModel: UserDetailsViewModel = hiltViewModel()
+    viewModel: UserDetailsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -73,15 +73,15 @@ fun UserDetailsScreen(
                     IconButton(onClick = { onBackButtonClick() }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Back Icon"
+                            contentDescription = "Back Icon",
                         )
                     }
                 },
                 title = {
                     Text(
-                        text = stringResource(R.string.users_details_screen_title)
+                        text = stringResource(R.string.users_details_screen_title),
                     )
-                }
+                },
             )
         },
         content = { scaffoldPadding ->
@@ -100,64 +100,73 @@ fun UserDetailsScreen(
                     }
                 }
             }
-        }
+        },
     )
 }
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun UserDetailsContent(userRepo: UserRepo, modifier: Modifier = Modifier) {
+fun UserDetailsContent(
+    userRepo: UserRepo,
+    modifier: Modifier = Modifier,
+) {
     val context = LocalContext.current
 
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(top = 16.dp)
+        modifier =
+            modifier
+                .fillMaxSize()
+                .padding(top = 16.dp),
     ) {
         Image(
-            modifier = Modifier
-                .width(150.dp)
-                .height(150.dp)
-                .align(Alignment.CenterHorizontally)
-                .clip(CircleShape),
-            painter = rememberImagePainter(
-                data = userRepo.user.avatarUrl, builder = {
-                    crossfade(true)
-                    scale(Scale.FILL)
-                }),
+            modifier =
+                Modifier
+                    .width(150.dp)
+                    .height(150.dp)
+                    .align(Alignment.CenterHorizontally)
+                    .clip(CircleShape),
+            painter =
+                rememberImagePainter(
+                    data = userRepo.user.avatarUrl,
+                    builder = {
+                        crossfade(true)
+                        scale(Scale.FILL)
+                    },
+                ),
             contentDescription = null,
-            contentScale = ContentScale.Fit
+            contentScale = ContentScale.Fit,
         )
         Column(
-            modifier = Modifier
-                .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+            modifier =
+                Modifier
+                    .padding(top = 16.dp, start = 16.dp, end = 16.dp),
         ) {
             Text(
                 text = userRepo.user.name,
                 style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = userRepo.user.login,
-                style = MaterialTheme.typography.bodySmall
+                style = MaterialTheme.typography.bodySmall,
             )
             Spacer(modifier = Modifier.height(8.dp))
             LazyColumn(
                 contentPadding = PaddingValues(top = 8.dp, bottom = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 items(
                     items = userRepo.userRepos,
                     key = { repos ->
                         repos.id
-                    }
+                    },
                 ) { repo ->
                     RepositoryListItem(
                         repo = repo,
                         onItemClick = {
                             openRepository(context, repo.url)
-                        }
+                        },
                     )
                 }
             }
@@ -165,7 +174,10 @@ fun UserDetailsContent(userRepo: UserRepo, modifier: Modifier = Modifier) {
     }
 }
 
-fun openRepository(context: Context, repoUrl: String) {
+fun openRepository(
+    context: Context,
+    repoUrl: String,
+) {
     val intent = Intent(Intent.ACTION_VIEW)
     intent.data = Uri.parse(repoUrl)
     ContextCompat.startActivity(context, intent, null)

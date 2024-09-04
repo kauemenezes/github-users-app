@@ -11,9 +11,8 @@ import kotlinx.coroutines.flow.zip
 
 class UserRepositoryImpl(
     private val userDataSource: UserDataSource,
-    private val dispatcher: CoroutineDispatcher
+    private val dispatcher: CoroutineDispatcher,
 ) : UserRepository {
-
     override suspend fun getUsers(): Flow<List<User>> {
         return userDataSource.getUsers()
             .flowOn(dispatcher)
@@ -24,7 +23,7 @@ class UserRepositoryImpl(
             .zip(userDataSource.getUserRepos(userLogin)) { userDetails, userRepos ->
                 return@zip UserRepo(
                     user = userDetails,
-                    userRepos = userRepos
+                    userRepos = userRepos,
                 )
             }
             .flowOn(dispatcher)

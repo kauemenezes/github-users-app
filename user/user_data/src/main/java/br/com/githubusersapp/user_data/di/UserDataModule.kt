@@ -23,18 +23,18 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object UserDataModule {
-
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
-        val client = OkHttpClient.Builder()
-            .addInterceptor(
-                Interceptor { chain ->
-                    val builder = chain.request().newBuilder()
-                    builder.header("Authorization", "Bearer ${BuildConfig.API_KEY}")
-                    return@Interceptor chain.proceed(builder.build())
-                }
-            )
+        val client =
+            OkHttpClient.Builder()
+                .addInterceptor(
+                    Interceptor { chain ->
+                        val builder = chain.request().newBuilder()
+                        builder.header("Authorization", "Bearer ${BuildConfig.API_KEY}")
+                        return@Interceptor chain.proceed(builder.build())
+                    },
+                )
         if (BuildConfig.DEBUG) {
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY
@@ -58,21 +58,19 @@ object UserDataModule {
     @Singleton
     fun provideUserRepository(
         userDataSource: UserDataSource,
-        dispatcher: CoroutineDispatcher
+        dispatcher: CoroutineDispatcher,
     ): UserRepository {
         return UserRepositoryImpl(
             userDataSource = userDataSource,
-            dispatcher = dispatcher
+            dispatcher = dispatcher,
         )
     }
 
     @Provides
     @Singleton
-    fun provideUserDataSource(
-        userService: UserService
-    ): UserDataSource {
+    fun provideUserDataSource(userService: UserService): UserDataSource {
         return UserDataSourceImpl(
-            userService = userService
+            userService = userService,
         )
     }
 

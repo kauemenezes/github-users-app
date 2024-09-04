@@ -26,29 +26,32 @@ import br.com.domain.model.Repo
 fun RepositoryListItem(
     repo: Repo,
     onItemClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Card(
-        modifier = modifier
-            .wrapContentHeight()
-            .fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 4.dp
-        )
+        modifier =
+            modifier
+                .wrapContentHeight()
+                .fillMaxWidth(),
+        elevation =
+            CardDefaults.cardElevation(
+                defaultElevation = 4.dp,
+            ),
     ) {
         Row(
-            modifier = Modifier
-                .height(IntrinsicSize.Max)
-                .fillMaxWidth()
-                .padding(
-                    vertical = 8.dp,
-                    horizontal = 16.dp
-                )
-                .clickable {
-                    onItemClick()
-                },
+            modifier =
+                Modifier
+                    .height(IntrinsicSize.Max)
+                    .fillMaxWidth()
+                    .padding(
+                        vertical = 8.dp,
+                        horizontal = 16.dp,
+                    )
+                    .clickable {
+                        onItemClick()
+                    },
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
 //            Column(
 //                Modifier
@@ -56,15 +59,16 @@ fun RepositoryListItem(
 //                    .padding(end = 16.dp)
 //                    .weight(0.9f)
 //            ) {
-                Text(
-                    text = repo.name,
-                    style = MaterialTheme.typography.bodySmall,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier
+            Text(
+                text = repo.name,
+                style = MaterialTheme.typography.bodySmall,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                modifier =
+                    Modifier
                         .padding(end = 16.dp)
-                        .weight(0.9f)
-                )
+                        .weight(0.9f),
+            )
 //            }
             Icon(
                 modifier = Modifier.weight(0.1f),

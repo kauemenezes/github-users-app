@@ -20,64 +20,66 @@ import javax.inject.Inject
 
 @HiltViewModel
 @OptIn(FlowPreview::class)
-class UsersViewModel @Inject constructor(
-    private val getUsersUseCase: GetUsersUseCase,
-    private val dispatcher: CoroutineDispatcher
-) : ViewModel() {
+class UsersViewModel
+    @Inject
+    constructor(
+        private val getUsersUseCase: GetUsersUseCase,
+        private val dispatcher: CoroutineDispatcher,
+    ) : ViewModel() {
+        private val _uiState = MutableStateFlow(UsersUiState())
+        val uiState = _uiState.asStateFlow()
 
-    private val _uiState = MutableStateFlow(UsersUiState())
-    val uiState = _uiState.asStateFlow()
+        private val _searchText = MutableStateFlow("")
+        val searchText = _searchText.asStateFlow()
 
-    private val _searchText = MutableStateFlow("")
-    val searchText = _searchText.asStateFlow()
+        init {
+            getUsers()
+        }
 
-    init {
-        getUsers()
-    }
-
-    private fun getUsers() {
-        viewModelScope.launch(dispatcher) {
-            _uiState.update {
-                it.copy(isLoading = true)
+        private fun getUsers() {
+            viewModelScope.launch(dispatcher) {
+                _uiState.update {
+                    it.copy(isLoading = true)
+                }
+                getUsersUseCase()
+                    .catch { error ->
+                        _uiState.update {
+                            it.copy(
+                                errorMessage = ExceptionParser.getMessage(error),
+                                isLoading = false,
+                            )
+                        }
+                    }
+                    .collect { users ->
+                        setupUsers(users)
+                    }
             }
-            getUsersUseCase()
-                .catch { error ->
+        }
+
+        private fun setupUsers(users: List<User>) {
+            searchText
+                .debounce(350L)
+                .onEach { query ->
+                    val filteredUsers =
+                        if (query.isNotBlank()) {
+                            users.filter {
+                                it.name.contains(query, true) || it.login.contains(query, true)
+                            }
+                        } else {
+                            users
+                        }
                     _uiState.update {
                         it.copy(
-                            errorMessage = ExceptionParser.getMessage(error),
-                            isLoading = false
+                            users = filteredUsers,
+                            hasNoUsers = filteredUsers.isEmpty(),
+                            errorMessage = null,
+                            isLoading = false,
                         )
                     }
-                }
-                .collect { users ->
-                    setupUsers(users)
-                }
+                }.launchIn(viewModelScope)
+        }
+
+        fun onSearchTextChange(text: String) {
+            _searchText.value = text
         }
     }
-
-    private fun setupUsers(users: List<User>) {
-        searchText
-            .debounce(350L)
-            .onEach { query ->
-                val filteredUsers = if (query.isNotBlank()) {
-                    users.filter {
-                        it.name.contains(query, true) || it.login.contains(query, true)
-                    }
-                } else {
-                    users
-                }
-                _uiState.update {
-                    it.copy(
-                        users = filteredUsers,
-                        hasNoUsers = filteredUsers.isEmpty(),
-                        errorMessage = null,
-                        isLoading = false
-                    )
-                }
-            }.launchIn(viewModelScope)
-    }
-
-    fun onSearchTextChange(text: String) {
-        _searchText.value = text
-    }
-}

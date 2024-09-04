@@ -14,25 +14,28 @@ import br.com.githubusersapp.user_presentation.users.UsersScreen
 fun MainNavigation(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.User.route
+        startDestination = Screen.User.route,
     ) {
         composable(route = Screen.User.route) {
             UsersScreen(
                 onNavigateToUserDetails = { userLogin ->
                     navController.navigate(route = Screen.UserDetails.passUserLogin(userLogin))
-                }
+                },
             )
         }
         composable(
             route = Screen.UserDetails.route,
-            arguments = listOf(navArgument(USER_DETAILS_ARGUMENT_KEY) {
-                type = NavType.StringType
-            })
+            arguments =
+                listOf(
+                    navArgument(USER_DETAILS_ARGUMENT_KEY) {
+                        type = NavType.StringType
+                    },
+                ),
         ) {
             UserDetailsScreen(
                 onBackButtonClick = {
                     navController.popBackStack()
-                }
+                },
             )
         }
     }

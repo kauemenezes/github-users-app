@@ -10,5 +10,5 @@ data class UserResponse(
     @SerializedName("login")
     val login: String?,
     @SerializedName("avatar_url")
-    val avatarUrl: String?
+    val avatarUrl: String?,
 )

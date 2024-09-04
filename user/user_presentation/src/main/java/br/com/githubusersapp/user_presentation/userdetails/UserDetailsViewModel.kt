@@ -15,46 +15,47 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class UserDetailsViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
-    private val getUserDetailsUseCase: GetUserDetailsUseCase,
-    private val dispatcher: CoroutineDispatcher
-) : ViewModel() {
+class UserDetailsViewModel
+    @Inject
+    constructor(
+        savedStateHandle: SavedStateHandle,
+        private val getUserDetailsUseCase: GetUserDetailsUseCase,
+        private val dispatcher: CoroutineDispatcher,
+    ) : ViewModel() {
+        private val _uiState = MutableStateFlow(UserDetailsUiState())
+        val uiState = _uiState.asStateFlow()
 
-    private val _uiState = MutableStateFlow(UserDetailsUiState())
-    val uiState = _uiState.asStateFlow()
-
-    init {
-        savedStateHandle.get<String>(USER_DETAILS_ARGUMENT_KEY)?.let {
-            getUserDetails(it)
-        }
-    }
-
-    private fun getUserDetails(userLogin: String) {
-        viewModelScope.launch(dispatcher) {
-            _uiState.update {
-                it.copy(
-                    isLoading = true
-                )
+        init {
+            savedStateHandle.get<String>(USER_DETAILS_ARGUMENT_KEY)?.let {
+                getUserDetails(it)
             }
-            getUserDetailsUseCase(userLogin)
-                .catch { error ->
-                    _uiState.update {
-                        it.copy(
-                            errorMessage = ExceptionParser.getMessage(error),
-                            isLoading = false
-                        )
+        }
+
+        private fun getUserDetails(userLogin: String) {
+            viewModelScope.launch(dispatcher) {
+                _uiState.update {
+                    it.copy(
+                        isLoading = true,
+                    )
+                }
+                getUserDetailsUseCase(userLogin)
+                    .catch { error ->
+                        _uiState.update {
+                            it.copy(
+                                errorMessage = ExceptionParser.getMessage(error),
+                                isLoading = false,
+                            )
+                        }
                     }
-                }
-                .collect { userDetails ->
-                   _uiState.update {
-                       it.copy(
-                           user = userDetails,
-                           errorMessage = null,
-                           isLoading = false
-                       )
-                   }
-                }
+                    .collect { userDetails ->
+                        _uiState.update {
+                            it.copy(
+                                user = userDetails,
+                                errorMessage = null,
+                                isLoading = false,
+                            )
+                        }
+                    }
+            }
         }
     }
-}

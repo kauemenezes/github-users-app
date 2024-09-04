@@ -6,5 +6,5 @@ import br.com.domain.model.UserRepo
 data class UserDetailsUiState(
     val user: UserRepo? = null,
     @StringRes val errorMessage: Int? = null,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
 )

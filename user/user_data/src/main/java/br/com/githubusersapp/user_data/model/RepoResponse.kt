@@ -10,5 +10,5 @@ data class RepoResponse(
     @SerializedName("full_name")
     val fullName: String?,
     @SerializedName("html_url")
-    val url: String?
+    val url: String?,
 )

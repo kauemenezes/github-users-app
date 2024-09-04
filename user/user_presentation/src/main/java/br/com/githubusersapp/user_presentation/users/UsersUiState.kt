@@ -7,5 +7,5 @@ data class UsersUiState(
     val users: List<User> = emptyList(),
     val hasNoUsers: Boolean = false,
     @StringRes val errorMessage: Int? = null,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
 )

@@ -12,20 +12,15 @@ import dagger.hilt.android.scopes.ViewModelScoped
 @Module
 @InstallIn(ViewModelComponent::class)
 object UserDomainModule {
-
     @ViewModelScoped
     @Provides
-    fun provideGetUsersUseCase(
-        userRepository: UserRepository
-    ): GetUsersUseCase {
+    fun provideGetUsersUseCase(userRepository: UserRepository): GetUsersUseCase {
         return GetUsersUseCase(userRepository)
     }
 
     @ViewModelScoped
     @Provides
-    fun provideGetUserDetailsUseCase(
-        userRepository: UserRepository
-    ): GetUserDetailsUseCase {
+    fun provideGetUserDetailsUseCase(userRepository: UserRepository): GetUserDetailsUseCase {
         return GetUserDetailsUseCase(userRepository)
     }
 }

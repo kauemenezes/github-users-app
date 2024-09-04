@@ -1,10 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("dagger.hilt.android.plugin")
     alias(libs.plugins.hilt)
     alias(libs.plugins.kapt)
 }
+
+apply(from = "$rootDir/ktlint.gradle")
 
 android {
     namespace = "br.com.githubusersapp"
@@ -28,7 +29,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }

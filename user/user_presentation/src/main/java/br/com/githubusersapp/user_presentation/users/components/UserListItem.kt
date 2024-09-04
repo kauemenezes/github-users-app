@@ -27,52 +27,64 @@ import coil.compose.rememberImagePainter
 import coil.size.Scale
 
 @Composable
-fun UserListItem(user: User, onItemClick: (String) -> Unit, modifier: Modifier = Modifier) {
+fun UserListItem(
+    user: User,
+    onItemClick: (String) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     Card(
-        modifier = modifier
-            .wrapContentHeight()
-            .fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 4.dp
-        )
+        modifier =
+            modifier
+                .wrapContentHeight()
+                .fillMaxWidth(),
+        elevation =
+            CardDefaults.cardElevation(
+                defaultElevation = 4.dp,
+            ),
     ) {
         Row(
-            modifier = Modifier
-                .height(IntrinsicSize.Max)
-                .fillMaxWidth()
-                .padding(
-                    horizontal = 16.dp,
-                    vertical = 4.dp
-                )
-                .clickable {
-                    onItemClick(user.login)
-                },
-            verticalAlignment = Alignment.CenterVertically
+            modifier =
+                Modifier
+                    .height(IntrinsicSize.Max)
+                    .fillMaxWidth()
+                    .padding(
+                        horizontal = 16.dp,
+                        vertical = 4.dp,
+                    )
+                    .clickable {
+                        onItemClick(user.login)
+                    },
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
-                modifier = Modifier
-                    .width(60.dp)
-                    .height(60.dp)
-                    .clip(CircleShape),
-                painter = rememberImagePainter(
-                    data = user.avatarUrl, builder = {
-                        crossfade(true)
-                        scale(Scale.FILL)
-                    }),
+                modifier =
+                    Modifier
+                        .width(60.dp)
+                        .height(60.dp)
+                        .clip(CircleShape),
+                painter =
+                    rememberImagePainter(
+                        data = user.avatarUrl,
+                        builder = {
+                            crossfade(true)
+                            scale(Scale.FILL)
+                        },
+                    ),
                 contentDescription = null,
-                contentScale = ContentScale.Fit
+                contentScale = ContentScale.Fit,
             )
             Column(
                 Modifier
                     .height(IntrinsicSize.Max)
                     .padding(
                         start = 16.dp,
-                    )) {
+                    ),
+            ) {
                 Text(
                     text = user.login,
                     style = MaterialTheme.typography.bodySmall,
                     maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
                 )
             }
         }

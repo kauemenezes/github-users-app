@@ -14,16 +14,16 @@ import br.com.githubusersapp.user_presentation.R
 @Composable
 fun EmptyState(
     modifier: Modifier = Modifier,
-    message: String = stringResource(id = R.string.users_screen_no_result_text)
+    message: String = stringResource(id = R.string.users_screen_no_result_text),
 ) {
     Box(
         modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Text(
             text = message,
             style = MaterialTheme.typography.bodySmall,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
     }
 }

@@ -4,7 +4,6 @@ import br.com.githubusersapp.user_presentation.R
 import java.io.IOException
 
 object ExceptionParser {
-
     fun getMessage(exception: Throwable): Int {
         return when (exception) {
             is IOException -> R.string.error_no_connection
