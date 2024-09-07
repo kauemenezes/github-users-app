@@ -7,12 +7,9 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-@RunWith(JUnit4::class)
 class UserServiceTest : BaseServiceTest() {
     private lateinit var service: UserService
 

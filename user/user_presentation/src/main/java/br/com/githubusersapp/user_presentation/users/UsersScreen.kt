@@ -81,7 +81,9 @@ fun UsersScreen(
                             .fillMaxWidth()
                             .padding(horizontal = 16.dp),
                     leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
-                    placeholder = { Text(text = "Search") },
+                    placeholder = {
+                        Text(text = stringResource(id = R.string.users_screen_input_search_hint))
+                    },
                     colors =
                         TextFieldDefaults.colors(
                             focusedContainerColor = MaterialTheme.colorScheme.background,

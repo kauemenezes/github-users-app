@@ -1,10 +1,10 @@
 package br.com.githubusersapp.user_data.datasource
 
-import br.com.githubusersapp.user_domain.model.Repo
-import br.com.githubusersapp.user_domain.model.User
 import br.com.githubusersapp.user_data.api.UserService
 import br.com.githubusersapp.user_data.mapper.RepoResponseMapper
 import br.com.githubusersapp.user_data.mapper.UserResponseMapper
+import br.com.githubusersapp.user_domain.model.Repo
+import br.com.githubusersapp.user_domain.model.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

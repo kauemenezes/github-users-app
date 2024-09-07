@@ -58,12 +58,8 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     testImplementation(libs.junit)
-    testImplementation(libs.robolectric)
-    testImplementation(libs.androidx.test.core)
-    testImplementation(libs.androidx.test.runner)
     testImplementation(libs.androidx.arch.core.test)
     testImplementation(libs.coroutines.test)
     testImplementation(libs.mockk)
     testImplementation(libs.mock.web.server)
-    testImplementation(libs.androidx.junit)
 }

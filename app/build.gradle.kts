@@ -18,7 +18,7 @@ android {
         versionCode = Integer.parseInt(libs.versions.versionCode.get())
         versionName = libs.versions.versionName.get()
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "br.com.githubusersapp.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -56,6 +56,7 @@ android {
 dependencies {
     implementation(project(":user:user_presentation"))
     implementation(project(":user:user_data"))
+    implementation(project(":user:user_domain"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -74,6 +75,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.hilt.testing)
+    kaptAndroidTest(libs.hilt.compiler)
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }

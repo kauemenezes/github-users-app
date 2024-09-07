@@ -1,6 +1,5 @@
 package br.com.githubusersapp.user_data.repository
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import br.com.githubusersapp.user_data.api.UserService
 import br.com.githubusersapp.user_data.datasource.UserDataSource
 import br.com.githubusersapp.user_data.datasource.UserDataSourceImpl
@@ -17,10 +16,8 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 
 @OptIn(ExperimentalCoroutinesApi::class)
-@RunWith(AndroidJUnit4::class)
 class UserRepositoryTest {
     private lateinit var userDataSource: UserDataSource
     private lateinit var userRepository: UserRepository

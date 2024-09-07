@@ -1,10 +1,10 @@
 package br.com.githubusersapp.user_data.sample
 
+import br.com.githubusersapp.user_data.model.RepoResponse
+import br.com.githubusersapp.user_data.model.UserResponse
 import br.com.githubusersapp.user_domain.model.Repo
 import br.com.githubusersapp.user_domain.model.User
 import br.com.githubusersapp.user_domain.model.UserRepo
-import br.com.githubusersapp.user_data.model.RepoResponse
-import br.com.githubusersapp.user_data.model.UserResponse
 
 val usersTestSuccess =
     """

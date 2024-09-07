@@ -6,6 +6,7 @@
     <string name="users_screen_image_description">Imagem do usuário</string>
     <string name="users_screen_input_search_hint">Buscar usuário</string>
     <string name="users_screen_no_result_text">Não existem resultados para sua busca</string>
+    <string name="users_screen_card_on_click_label">Ir para a tela de detalhes do usuário %1$s</string>
 
     <!-- User details screen -->
     <string name="users_details_screen_title">Detalhes do Usuário</string>
