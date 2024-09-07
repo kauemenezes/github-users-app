@@ -1,4 +1,4 @@
-package br.com.domain.model
+package br.com.githubusersapp.user_domain.model
 
 data class User(
     val id: Long,

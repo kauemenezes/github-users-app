@@ -1,7 +1,7 @@
 package br.com.githubusersapp.user_presentation.userdetails
 
 import androidx.annotation.StringRes
-import br.com.domain.model.UserRepo
+import br.com.githubusersapp.user_domain.model.UserRepo
 
 data class UserDetailsUiState(
     val user: UserRepo? = null,

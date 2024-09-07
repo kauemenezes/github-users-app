@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import br.com.domain.model.UserRepo
+import br.com.githubusersapp.user_domain.model.UserRepo
 import br.com.githubusersapp.user_presentation.R
 import br.com.githubusersapp.user_presentation.components.EmptyState
 import br.com.githubusersapp.user_presentation.components.ProgressIndicator

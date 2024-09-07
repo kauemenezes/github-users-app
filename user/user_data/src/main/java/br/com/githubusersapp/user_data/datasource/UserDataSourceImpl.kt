@@ -1,7 +1,7 @@
 package br.com.githubusersapp.user_data.datasource
 
-import br.com.domain.model.Repo
-import br.com.domain.model.User
+import br.com.githubusersapp.user_domain.model.Repo
+import br.com.githubusersapp.user_domain.model.User
 import br.com.githubusersapp.user_data.api.UserService
 import br.com.githubusersapp.user_data.mapper.RepoResponseMapper
 import br.com.githubusersapp.user_data.mapper.UserResponseMapper

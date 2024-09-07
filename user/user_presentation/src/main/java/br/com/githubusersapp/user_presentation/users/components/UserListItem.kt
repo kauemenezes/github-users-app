@@ -22,7 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import br.com.domain.model.User
+import br.com.githubusersapp.user_domain.model.User
 import coil.compose.rememberImagePainter
 import coil.size.Scale
 

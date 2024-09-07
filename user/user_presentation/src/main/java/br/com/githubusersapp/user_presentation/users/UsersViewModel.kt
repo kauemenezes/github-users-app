@@ -2,7 +2,7 @@ package br.com.githubusersapp.user_presentation.users
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.domain.model.User
+import br.com.githubusersapp.user_domain.model.User
 import br.com.githubusersapp.user_domain.usecase.GetUsersUseCase
 import br.com.githubusersapp.user_presentation.util.ExceptionParser
 import dagger.hilt.android.lifecycle.HiltViewModel

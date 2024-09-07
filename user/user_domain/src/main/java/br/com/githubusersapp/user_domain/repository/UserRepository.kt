@@ -1,7 +1,7 @@
 package br.com.githubusersapp.user_domain.repository
 
-import br.com.domain.model.User
-import br.com.domain.model.UserRepo
+import br.com.githubusersapp.user_domain.model.User
+import br.com.githubusersapp.user_domain.model.UserRepo
 import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {

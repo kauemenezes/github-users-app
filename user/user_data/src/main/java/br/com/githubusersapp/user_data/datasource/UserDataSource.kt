@@ -1,7 +1,7 @@
 package br.com.githubusersapp.user_data.datasource
 
-import br.com.domain.model.Repo
-import br.com.domain.model.User
+import br.com.githubusersapp.user_domain.model.Repo
+import br.com.githubusersapp.user_domain.model.User
 import kotlinx.coroutines.flow.Flow
 
 interface UserDataSource {
