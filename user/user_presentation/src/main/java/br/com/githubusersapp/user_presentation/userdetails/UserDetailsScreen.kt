@@ -47,8 +47,6 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import coil.size.Scale
 
-const val USER_DETAILS_ARGUMENT_KEY = "userLogin"
-
 @Composable
 fun UserDetailsScreen(
     onBackButtonClick: () -> Unit,

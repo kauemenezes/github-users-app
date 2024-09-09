@@ -1,6 +1,5 @@
 package br.com.githubusersapp.user_presentation.viewmodel
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import app.cash.turbine.test
 import br.com.githubusersapp.user_domain.repository.UserRepository
 import br.com.githubusersapp.user_domain.usecase.GetUsersUseCase
@@ -16,10 +15,8 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 
 @OptIn(ExperimentalCoroutinesApi::class)
-@RunWith(AndroidJUnit4::class)
 class UsersViewModelTest {
     private lateinit var getUsersUseCase: GetUsersUseCase
     private lateinit var userRepository: UserRepository

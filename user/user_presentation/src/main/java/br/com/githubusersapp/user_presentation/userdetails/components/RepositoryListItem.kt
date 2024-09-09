@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -53,12 +53,6 @@ fun RepositoryListItem(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-//            Column(
-//                Modifier
-//                    .height(IntrinsicSize.Max)
-//                    .padding(end = 16.dp)
-//                    .weight(0.9f)
-//            ) {
             Text(
                 text = repo.name,
                 style = MaterialTheme.typography.bodySmall,
@@ -69,10 +63,9 @@ fun RepositoryListItem(
                         .padding(end = 16.dp)
                         .weight(0.9f),
             )
-//            }
             Icon(
                 modifier = Modifier.weight(0.1f),
-                imageVector = Icons.Default.ArrowForward,
+                imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                 contentDescription = "Forward Icon",
             )
         }

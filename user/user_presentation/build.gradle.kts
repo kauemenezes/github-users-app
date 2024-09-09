@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.viewmodel.compose)
     implementation(libs.lifecycle.compose)
+    implementation(libs.navigation.compose)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.coil.compose)
     implementation(libs.hilt.android)
@@ -64,11 +65,8 @@ dependencies {
 
     testImplementation(libs.junit)
     testImplementation(libs.robolectric)
-    testImplementation(libs.androidx.test.core)
-    testImplementation(libs.androidx.test.runner)
-    testImplementation(libs.androidx.arch.core.test)
     testImplementation(libs.coroutines.test)
     testImplementation(libs.mockk)
-    testImplementation(libs.androidx.junit)
     testImplementation(libs.turbine)
+    testImplementation(libs.navigation.testing)
 }

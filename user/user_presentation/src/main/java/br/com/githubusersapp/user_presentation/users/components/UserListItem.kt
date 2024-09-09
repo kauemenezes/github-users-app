@@ -24,9 +24,11 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import br.com.githubusersapp.user_domain.model.User
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import coil.size.Scale
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun UserListItem(
     user: User,

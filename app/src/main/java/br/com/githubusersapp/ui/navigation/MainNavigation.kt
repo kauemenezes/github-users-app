@@ -2,11 +2,10 @@ package br.com.githubusersapp.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import br.com.githubusersapp.user_presentation.userdetails.USER_DETAILS_ARGUMENT_KEY
+import br.com.githubusersapp.user_domain.model.screen.UserDetails
+import br.com.githubusersapp.user_domain.model.screen.Users
 import br.com.githubusersapp.user_presentation.userdetails.UserDetailsScreen
 import br.com.githubusersapp.user_presentation.users.UsersScreen
 
@@ -14,24 +13,16 @@ import br.com.githubusersapp.user_presentation.users.UsersScreen
 fun MainNavigation(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.User.route,
+        startDestination = Users,
     ) {
-        composable(route = Screen.User.route) {
+        composable<Users> {
             UsersScreen(
                 onNavigateToUserDetails = { userLogin ->
-                    navController.navigate(route = Screen.UserDetails.passUserLogin(userLogin))
+                    navController.navigate(route = UserDetails(userLogin))
                 },
             )
         }
-        composable(
-            route = Screen.UserDetails.route,
-            arguments =
-                listOf(
-                    navArgument(USER_DETAILS_ARGUMENT_KEY) {
-                        type = NavType.StringType
-                    },
-                ),
-        ) {
+        composable<UserDetails> {
             UserDetailsScreen(
                 onBackButtonClick = {
                     navController.popBackStack()

@@ -3,6 +3,8 @@ package br.com.githubusersapp.user_presentation.userdetails
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
+import br.com.githubusersapp.user_domain.model.screen.UserDetails
 import br.com.githubusersapp.user_domain.usecase.GetUserDetailsUseCase
 import br.com.githubusersapp.user_presentation.util.ExceptionParser
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,9 +28,8 @@ class UserDetailsViewModel
         val uiState = _uiState.asStateFlow()
 
         init {
-            savedStateHandle.get<String>(USER_DETAILS_ARGUMENT_KEY)?.let {
-                getUserDetails(it)
-            }
+            val userLogin: String = savedStateHandle.toRoute<UserDetails>().userLogin
+            getUserDetails(userLogin)
         }
 
         private fun getUserDetails(userLogin: String) {
