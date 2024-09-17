@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.compose)
 }
 
 apply(from = "$rootDir/ktlint.gradle")
@@ -43,14 +44,15 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+}
+
+composeCompiler {
+    stabilityConfigurationFile = project.rootDir.resolve("stability_config.conf")
 }
 
 dependencies {

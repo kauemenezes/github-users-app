@@ -61,10 +61,9 @@ fun RepositoryListItem(
                 modifier =
                     Modifier
                         .padding(end = 16.dp)
-                        .weight(0.9f),
+                        .weight(1f),
             )
             Icon(
-                modifier = Modifier.weight(0.1f),
                 imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                 contentDescription = "Forward Icon",
             )

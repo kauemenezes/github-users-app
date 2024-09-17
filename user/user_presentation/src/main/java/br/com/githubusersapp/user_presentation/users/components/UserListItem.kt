@@ -1,10 +1,9 @@
 package br.com.githubusersapp.user_presentation.users.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -24,11 +23,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import br.com.githubusersapp.user_domain.model.User
-import coil.annotation.ExperimentalCoilApi
-import coil.compose.rememberImagePainter
-import coil.size.Scale
+import coil.compose.AsyncImage
 
-@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun UserListItem(
     user: User,
@@ -60,37 +56,24 @@ fun UserListItem(
                     .testTag(user.login),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Image(
+            AsyncImage(
+                model = user.avatarUrl,
                 modifier =
                     Modifier
                         .width(60.dp)
                         .height(60.dp)
                         .clip(CircleShape),
-                painter =
-                    rememberImagePainter(
-                        data = user.avatarUrl,
-                        builder = {
-                            crossfade(true)
-                            scale(Scale.FILL)
-                        },
-                    ),
                 contentDescription = null,
                 contentScale = ContentScale.Fit,
             )
-            Column(
-                Modifier
-                    .height(IntrinsicSize.Max)
-                    .padding(
-                        start = 16.dp,
-                    ),
-            ) {
-                Text(
-                    text = user.login,
-                    style = MaterialTheme.typography.bodySmall,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            }
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(
+                text = user.login,
+                style = MaterialTheme.typography.bodySmall,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.weight(1f),
+            )
         }
     }
 }

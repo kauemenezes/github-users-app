@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.compose)
 }
 
 apply(from = "$rootDir/ktlint.gradle")
@@ -34,9 +35,6 @@ android {
     }
     buildFeatures {
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
     }
     kotlinOptions {
         jvmTarget = "17"

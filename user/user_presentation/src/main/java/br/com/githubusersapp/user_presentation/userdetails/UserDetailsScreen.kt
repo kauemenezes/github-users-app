@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -17,7 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -43,9 +42,7 @@ import br.com.githubusersapp.user_presentation.R
 import br.com.githubusersapp.user_presentation.components.EmptyState
 import br.com.githubusersapp.user_presentation.components.ProgressIndicator
 import br.com.githubusersapp.user_presentation.userdetails.components.RepositoryListItem
-import coil.annotation.ExperimentalCoilApi
-import coil.compose.rememberImagePainter
-import coil.size.Scale
+import coil.compose.AsyncImage
 
 @Composable
 fun UserDetailsScreen(
@@ -70,7 +67,7 @@ fun UserDetailsScreen(
                 navigationIcon = {
                     IconButton(onClick = { onBackButtonClick() }) {
                         Icon(
-                            imageVector = Icons.Default.ArrowBack,
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Back Icon",
                         )
                     }
@@ -102,7 +99,6 @@ fun UserDetailsScreen(
     )
 }
 
-@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun UserDetailsContent(
     userRepo: UserRepo,
@@ -116,21 +112,14 @@ fun UserDetailsContent(
                 .fillMaxSize()
                 .padding(top = 16.dp),
     ) {
-        Image(
+        AsyncImage(
+            model = userRepo.user.avatarUrl,
             modifier =
                 Modifier
                     .width(150.dp)
                     .height(150.dp)
                     .align(Alignment.CenterHorizontally)
                     .clip(CircleShape),
-            painter =
-                rememberImagePainter(
-                    data = userRepo.user.avatarUrl,
-                    builder = {
-                        crossfade(true)
-                        scale(Scale.FILL)
-                    },
-                ),
             contentDescription = null,
             contentScale = ContentScale.Fit,
         )
