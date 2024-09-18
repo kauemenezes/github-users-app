@@ -24,6 +24,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -109,7 +110,8 @@ fun UsersScreen(
                         LazyColumn(
                             modifier =
                                 Modifier
-                                    .fillMaxSize(),
+                                    .fillMaxSize()
+                                    .testTag("user_list"),
                             contentPadding = PaddingValues(16.dp),
                             verticalArrangement = Arrangement.spacedBy(8.dp),
                         ) {
@@ -119,7 +121,11 @@ fun UsersScreen(
                                     user.id
                                 },
                             ) { user ->
-                                UserListItem(user = user, onItemClick = onItemClick)
+                                UserListItem(
+                                    user = user,
+                                    onItemClick = onItemClick,
+                                    modifier = Modifier.testTag("user_card"),
+                                )
                             }
                         }
                     }

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.kapt)
     alias(libs.plugins.compose)
+    alias(libs.plugins.baselineprofile)
 }
 
 apply(from = "$rootDir/ktlint.gradle")
@@ -55,6 +56,10 @@ composeCompiler {
     stabilityConfigurationFile = project.rootDir.resolve("stability_config.conf")
 }
 
+baselineProfile {
+    mergeIntoMain = true
+}
+
 dependencies {
     implementation(project(":user:user_presentation"))
     implementation(project(":user:user_data"))
@@ -70,6 +75,8 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.navigation.compose)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.profileinstaller)
+    "baselineProfile"(project(":baselineprofile"))
     kapt(libs.hilt.compiler)
 
     testImplementation(libs.junit)

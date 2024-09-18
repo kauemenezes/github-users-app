@@ -19,3 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Application classes that will be serialized/deserialized over Gson
+-keep class br.com.githubusersapp.user_domain.model.** { *; }
+-keep class br.com.githubusersapp.user_data.model.** { *; }
+-keepclassmembers enum * {*;}
