@@ -41,6 +41,10 @@ android {
     }
 }
 
+composeCompiler {
+    stabilityConfigurationFile = project.rootDir.resolve("stability_config.conf")
+}
+
 dependencies {
     implementation(project(":user:user_domain"))
 
